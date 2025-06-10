@@ -1,0 +1,435 @@
+{
+  "home": {
+    "name": "Tushar Singh",
+    "email": "connect.tushar0@gmail.com",
+    "phone": "+1 (669)-212-1359",
+    "socials": {
+      "github": "https://github.com/tushar-fs",
+      "linkedin": "https://linkedin.com/in/tushar-singh-sde"
+    },
+    "bio": "I am a software engineer with a passion for building scalable and efficient systems. I am currently a master's student at San Jose State University, pursuing a degree in Computer Software Engineering. I am interested in full-stack development, distributed systems, and artificial intelligence."
+  },
+  "education": [
+    {
+      "institution": "San Jose State University",
+      "location": "San Jose, CA",
+      "degree": "Masters in Computer Software Engineering",
+      "gpa": "3.7/4.0",
+      "duration": "Jan 2025 - Present",
+      "coursework": [
+        "Enterprise Distributed Systems",
+        "Software Systems Engineering",
+        "Enterprise Software Applications"
+      ]
+    },
+    {
+      "institution": "National Institute of Technology",
+      "location": "Meghalaya, India",
+      "degree": "Bachelors in Computer Science & Engineering",
+      "gpa": "3.5/4.0",
+      "duration": "Aug 2018 - Jun 2022",
+      "coursework": [
+        "Design & Analysis of Algorithms",
+        "Database Management Systems",
+        "Computer Networks",
+        "Operating Systems",
+        "Object Oriented Programming",
+        "Cloud Computing"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Software Engineer",
+      "company": "Tekion Corp",
+      "duration": "July 2022 - Dec 2024",
+      "location": "Bengaluru, India",
+      "points": [
+        "Designed and implemented 10+ interactive user interfaces using NextJS, React & Material UI primarily leveraging Client-Side Rendering (CSR) to create a dynamic, app-like user experience that led to a 20% increase in user engagement.",
+        "Integrated a configurable front-end UI into the Account Receivables module using TypeScript & React.",
+        "Developed a feature leveraging local and session storage API's to persist user vehicle builds and customizations, ensuring seamless state preservation and retrieval across browser sessions.",
+        "Engineered a responsive compare vehicles page by adopting a hybrid rendering strategy. Utilized Static Site Generation(SSG) for initial page loads, while applying Client Side Rendering(CSR) for interactive search and filtering.",
+        "Refactored for code-splitting and lazy loading (~30% bundle size), introduced SEO-friendly URLs."
+      ]
+    },
+    {
+      "role": "Engineering Intern",
+      "company": "Tekion Corp",
+      "duration": "Jan 2022 - Jun 2022",
+      "location": "Bengaluru, India",
+      "points": [
+        "Collaborated with frontend team on a project aimed at streamlining dealer onboarding processes, resulting in a significant reduction in company's costs associated with dealer onboarding.",
+        "Authored comprehensive Unit tests with Jest and React Testing Library (RTL) to ensure code quality."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Customer Support Analyzer [RAG based Application]",
+      "githubUrl": "https://github.com/tushar-fs",
+      "description": [
+        "Architected a full-stack semantic search engine, featuring a Python/FastAPI backend to power a Retrieval-Augmented Generation (RAG) pipeline to enable natural language queries on a knowledge base of customer support tickets.",
+        "Combined Google's gemini-1.5-flash-latest LLM with a ChromaDB vector database and 'sentence-transformers' to deliver context-aware resolution from a knowledge base.",
+        "Engineered a responsive frontend using Next.js and React, allowing users to submit queries and view AI-generated answers alongside original source support tickets for verification."
+      ],
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "Next.js",
+        "React",
+        "Vector Database (ChromaDB)",
+        "Google Gemini API",
+        "Sentence-Transformers",
+        "Hugging face",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "name": "BookTable [Restaurant Booking Application]",
+      "githubUrl": "https://github.com/tushar-fs",
+      "description": [
+        "Led key frontend development: Established the UI project, dockerized frontend, built core user interfaces (Login, Homepage, Profile), and engineered dynamic restaurant search and discovery by integrating Google Maps API.",
+        "Developed backend REST APIs in Spring Boot for user registration, booking, and restaurant search functionalities. Leveraged Spring JPA and JDBC to connect and perform CRUD operations on a MySQL database for data persistence."
+      ],
+      "technologies": [
+        "Spring boot",
+        "JDBC",
+        "MySQL",
+        "Gradle",
+        "NextJS",
+        "React",
+        "Docker",
+        "NPM",
+        "Google Places API"
+      ]
+    },
+    {
+      "name": "Log Classifier [Java CLI Application]",
+      "githubUrl": "https://github.com/tushar-fs/logClassifier",
+      "description": [
+        "Developed a robust Java application to parse, classify, and aggregate raw log files into structured JSON reports for performance, application, and request analysis.",
+        "Implemented the Chain of Responsibility and Strategy design patterns to create a modular and extensible log processing pipeline.",
+        "Engineered a comprehensive analysis tool to calculate critical system metrics, including CPU/memory usage, error rates, and API response time percentiles."
+      ],
+      "technologies": ["Core Java", "Gradle", "Google Gson", "JUnit"]
+    }
+  ],
+  "skills": {
+    "Programming Languages": [
+      {
+        "name": "JavaScript (ES6+)",
+        "usedIn": {
+          "projects": ["BookTable [Restaurant Booking Application]"],
+          "experience": [
+            "Software Engineer @ Tekion Corp",
+            "Engineering Intern @ Tekion Corp"
+          ]
+        }
+      },
+      {
+        "name": "Java",
+        "usedIn": {
+          "projects": [
+            "BookTable [Restaurant Booking Application]",
+            "Log Classifier [Java CLI Application]"
+          ],
+          "experience": []
+        }
+      },
+      {
+        "name": "C++",
+        "usedIn": {
+          "projects": [],
+          "experience": []
+        }
+      },
+      {
+        "name": "Python",
+        "usedIn": {
+          "projects": ["Customer Support Analyzer [RAG based Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "SQL",
+        "usedIn": {
+          "projects": ["BookTable [Restaurant Booking Application]"],
+          "experience": []
+        }
+      }
+    ],
+    "Frontend": [
+      {
+        "name": "React",
+        "usedIn": {
+          "projects": [
+            "Customer Support Analyzer [RAG based Application]",
+            "BookTable [Restaurant Booking Application]"
+          ],
+          "experience": [
+            "Software Engineer @ Tekion Corp",
+            "Engineering Intern @ Tekion Corp"
+          ]
+        }
+      },
+      {
+        "name": "Next.js",
+        "usedIn": {
+          "projects": [
+            "Customer Support Analyzer [RAG based Application]",
+            "BookTable [Restaurant Booking Application]"
+          ],
+          "experience": ["Software Engineer @ Tekion Corp"]
+        }
+      },
+      {
+        "name": "Redux",
+        "usedIn": {
+          "projects": [],
+          "experience": ["Software Engineer @ Tekion Corp"]
+        }
+      },
+      {
+        "name": "Tailwind CSS",
+        "usedIn": {
+          "projects": ["Customer Support Analyzer [RAG based Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "Sass",
+        "usedIn": {
+          "projects": [],
+          "experience": []
+        }
+      },
+      {
+        "name": "Material UI",
+        "usedIn": {
+          "projects": [],
+          "experience": ["Software Engineer @ Tekion Corp"]
+        }
+      },
+      {
+        "name": "NPM",
+        "usedIn": {
+          "projects": ["BookTable [Restaurant Booking Application]"],
+          "experience": ["Software Engineer @ Tekion Corp"]
+        }
+      },
+      {
+        "name": "Yarn",
+        "usedIn": {
+          "projects": [],
+          "experience": []
+        }
+      }
+    ],
+    "Backend": [
+      {
+        "name": "Spring",
+        "usedIn": {
+          "projects": ["BookTable [Restaurant Booking Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "Spring Boot",
+        "usedIn": {
+          "projects": ["BookTable [Restaurant Booking Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "Gradle",
+        "usedIn": {
+          "projects": [
+            "BookTable [Restaurant Booking Application]",
+            "Log Classifier [Java CLI Application]"
+          ],
+          "experience": []
+        }
+      },
+      {
+        "name": "Spring JPA",
+        "usedIn": {
+          "projects": ["BookTable [Restaurant Booking Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "JDBC",
+        "usedIn": {
+          "projects": ["BookTable [Restaurant Booking Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "FastAPI",
+        "usedIn": {
+          "projects": ["Customer Support Analyzer [RAG based Application]"],
+          "experience": []
+        }
+      }
+    ],
+    "AI Engineering": [
+      {
+        "name": "LLM",
+        "usedIn": {
+          "projects": ["Customer Support Analyzer [RAG based Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "RAG",
+        "usedIn": {
+          "projects": ["Customer Support Analyzer [RAG based Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "Vector Database",
+        "usedIn": {
+          "projects": ["Customer Support Analyzer [RAG based Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "ChromaDB",
+        "usedIn": {
+          "projects": ["Customer Support Analyzer [RAG based Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "Gemini",
+        "usedIn": {
+          "projects": ["Customer Support Analyzer [RAG based Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "OpenAI",
+        "usedIn": {
+          "projects": [],
+          "experience": []
+        }
+      },
+      {
+        "name": "Hugging Face",
+        "usedIn": {
+          "projects": ["Customer Support Analyzer [RAG based Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "Sentence-Transformers",
+        "usedIn": {
+          "projects": ["Customer Support Analyzer [RAG based Application]"],
+          "experience": []
+        }
+      }
+    ],
+    "Databases & Message queues": [
+      {
+        "name": "MySQL",
+        "usedIn": {
+          "projects": ["BookTable [Restaurant Booking Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "NoSQL",
+        "usedIn": {
+          "projects": [],
+          "experience": []
+        }
+      },
+      {
+        "name": "Redis",
+        "usedIn": {
+          "projects": [],
+          "experience": []
+        }
+      },
+      {
+        "name": "RabbitMQ",
+        "usedIn": {
+          "projects": [],
+          "experience": []
+        }
+      },
+      {
+        "name": "Kafka",
+        "usedIn": {
+          "projects": [],
+          "experience": []
+        }
+      },
+      {
+        "name": "MQTT",
+        "usedIn": {
+          "projects": [],
+          "experience": []
+        }
+      }
+    ],
+    "Software Tools": [
+      {
+        "name": "Git",
+        "usedIn": {
+          "projects": [
+            "Customer Support Analyzer [RAG based Application]",
+            "BookTable [Restaurant Booking Application]",
+            "Log Classifier [Java CLI Application]"
+          ],
+          "experience": [
+            "Software Engineer @ Tekion Corp",
+            "Engineering Intern @ Tekion Corp"
+          ]
+        }
+      },
+      {
+        "name": "Docker",
+        "usedIn": {
+          "projects": ["BookTable [Restaurant Booking Application]"],
+          "experience": []
+        }
+      },
+      {
+        "name": "Figma",
+        "usedIn": {
+          "projects": [],
+          "experience": ["Software Engineer @ Tekion Corp"]
+        }
+      },
+      {
+        "name": "IntelliJ",
+        "usedIn": {
+          "projects": [
+            "BookTable [Restaurant Booking Application]",
+            "Log Classifier [Java CLI Application]"
+          ],
+          "experience": []
+        }
+      },
+      {
+        "name": "Postman",
+        "usedIn": {
+          "projects": [
+            "Customer Support Analyzer [RAG based Application]",
+            "BookTable [Restaurant Booking Application]"
+          ],
+          "experience": ["Software Engineer @ Tekion Corp"]
+        }
+      },
+      {
+        "name": "Jenkins",
+        "usedIn": {
+          "projects": [],
+          "experience": []
+        }
+      }
+    ]
+  }
+}
