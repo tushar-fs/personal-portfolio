@@ -99,12 +99,23 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="flex gap-4">
-          <Link href="/projects" passHref>
-            <AnimatedButton>View My Work</AnimatedButton>
-          </Link>
-          <Link href="/resume" passHref>
-            <AnimatedButton color="secondary">View Resume</AnimatedButton>
+        <div className="flex flex-col items-start gap-4 w-full max-w-md">
+          <div className="flex gap-4 w-full">
+            <Link href="/experience" passHref className="flex-1">
+              <AnimatedButton className="w-full">
+                View Experience
+              </AnimatedButton>
+            </Link>
+            <Link href="/resume" passHref className="flex-1">
+              <AnimatedButton color="secondary" className="w-full">
+                View Resume
+              </AnimatedButton>
+            </Link>
+          </div>
+          <Link href="/contact" passHref className="w-full">
+            <AnimatedButton color="primary" className="w-full">
+              Contact Me
+            </AnimatedButton>
           </Link>
         </div>
       </motion.section>

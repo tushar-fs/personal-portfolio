@@ -1,13 +1,24 @@
 import React from "react";
-import { FaGithub, FaLinkedin, FaMapMarkerAlt } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaMapMarkerAlt,
+  FaEnvelope,
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 import resume from "@/data/resume.json";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const router = useRouter();
+  const isHomePage = router.pathname === "/";
+  const isContactPage = router.pathname === "/contact";
+  const shouldShowContactCTA = !isHomePage && !isContactPage;
 
   return (
-    <footer className="py-8 mt-16 border-t border-border">
+    <footer className="fixed bottom-0 left-0 right-0 py-4 border-t border-border bg-background z-40">
       <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-sm text-muted-foreground">
           © {currentYear} {resume.home.name}. All rights reserved.
@@ -19,6 +30,32 @@ export default function Footer() {
         </div>
 
         <div className="flex gap-4 items-center">
+          {shouldShowContactCTA && (
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                boxShadow: [
+                  "0px 0px 0px rgba(99, 102, 241, 0)",
+                  "0px 0px 8px rgba(99, 102, 241, 0.5)",
+                  "0px 0px 0px rgba(99, 102, 241, 0)",
+                ],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "loop",
+              }}
+              className="mr-3"
+            >
+              <Link href="/contact" passHref>
+                <span className="flex items-center gap-2 px-4 py-2.5 text-sm font-bold bg-primary text-white rounded-md shadow-md hover:bg-accent transition-colors duration-300 cursor-pointer">
+                  <FaEnvelope className="text-lg" />
+                  Contact Me
+                </span>
+              </Link>
+            </motion.div>
+          )}
           <motion.a
             href={resume.home.socials.github}
             target="_blank"

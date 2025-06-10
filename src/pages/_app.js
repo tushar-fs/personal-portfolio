@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }) {
         className={`min-h-screen bg-background flex flex-col ${robotoMono.className}`}
       >
         <Navbar />
-        <div className="flex-grow">
+        <div className="flex-grow pb-24">
           <AnimatePresence mode="wait">
             <motion.div
               key={router.route}

@@ -10,6 +10,7 @@ import {
   FaGraduationCap,
   FaTools,
   FaFileAlt,
+  FaEnvelope,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Logo from "./Logo";
