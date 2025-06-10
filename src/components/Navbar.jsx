@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import {
@@ -11,8 +11,10 @@ import {
   FaTools,
   FaFileAlt,
   FaEnvelope,
+  FaBars,
+  FaTimes,
 } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 import { useTheme } from "@/context/ThemeContext";
@@ -40,6 +42,15 @@ export default function Navbar() {
   const router = useRouter();
   const { theme } = useTheme();
   const isDark = theme === "dark";
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Handle menu toggle
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  // Close menu when route changes
+  React.useEffect(() => {
+    setIsMenuOpen(false);
+  }, [router.pathname]);
 
   return (
     <motion.nav
@@ -53,6 +64,7 @@ export default function Navbar() {
           <Logo />
         </Link>
 
+        {/* Desktop Navigation */}
         <ul className="hidden md:flex gap-2 items-center">
           {NAV_ITEMS.map((item) => {
             const isActive = router.pathname === item.href;
@@ -116,42 +128,114 @@ export default function Navbar() {
 
         <div className="flex gap-4 items-center text-xl text-muted-foreground">
           <ThemeToggle />
-          <motion.a
-            href={resume.home.socials.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{
-              scale: 1.1,
-              color: isDark ? "#818cf8" : "#6366f1",
-              transition: {
-                scale: { duration: 0.3, ease: "easeOut" },
-                color: { duration: 0.3, ease: "easeOut" },
-              },
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="transition-all duration-300"
+          {/* Social icons for desktop */}
+          <div className="hidden md:flex gap-4">
+            <motion.a
+              href={resume.home.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{
+                scale: 1.1,
+                color: isDark ? "#818cf8" : "#6366f1",
+                transition: {
+                  scale: { duration: 0.3, ease: "easeOut" },
+                  color: { duration: 0.3, ease: "easeOut" },
+                },
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="transition-all duration-300"
+            >
+              <FaGithub />
+            </motion.a>
+            <motion.a
+              href={resume.home.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{
+                scale: 1.1,
+                color: isDark ? "#818cf8" : "#6366f1",
+                transition: {
+                  scale: { duration: 0.3, ease: "easeOut" },
+                  color: { duration: 0.3, ease: "easeOut" },
+                },
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="transition-all duration-300"
+            >
+              <FaLinkedin />
+            </motion.a>
+          </div>
+
+          {/* Mobile menu button */}
+          <motion.button
+            className="block md:hidden text-xl"
+            onClick={toggleMenu}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Toggle menu"
           >
-            <FaGithub />
-          </motion.a>
-          <motion.a
-            href={resume.home.socials.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{
-              scale: 1.1,
-              color: isDark ? "#818cf8" : "#6366f1",
-              transition: {
-                scale: { duration: 0.3, ease: "easeOut" },
-                color: { duration: 0.3, ease: "easeOut" },
-              },
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="transition-all duration-300"
-          >
-            <FaLinkedin />
-          </motion.a>
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
+          </motion.button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden mt-2 bg-muted/95 backdrop-blur-sm border border-border rounded-xl shadow-lg overflow-hidden"
+          >
+            <ul className="py-2 px-4">
+              {NAV_ITEMS.map((item) => {
+                const isActive = router.pathname === item.href;
+                return (
+                  <li key={item.href} className="my-1">
+                    <Link href={item.href} passHref>
+                      <motion.div
+                        className={`flex items-center gap-3 px-3 py-3 rounded-md text-sm font-bold ${
+                          isActive
+                            ? "bg-primary text-white"
+                            : "text-muted-foreground hover:bg-primary/10"
+                        }`}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <span className="text-lg">{item.icon}</span>
+                        {item.label}
+                      </motion.div>
+                    </Link>
+                  </li>
+                );
+              })}
+              <li className="mt-4 pt-4 border-t border-border flex gap-4 justify-center">
+                <motion.a
+                  href={resume.home.socials.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xl text-muted-foreground hover:text-primary"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaGithub />
+                </motion.a>
+                <motion.a
+                  href={resume.home.socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xl text-muted-foreground hover:text-primary"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaLinkedin />
+                </motion.a>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }
