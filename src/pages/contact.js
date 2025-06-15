@@ -1,6 +1,12 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { FiMail, FiUser, FiMessageSquare } from "react-icons/fi";
+import {
+  FiMail,
+  FiUser,
+  FiMessageSquare,
+  FiPaperclip,
+  FiX,
+} from "react-icons/fi";
 import AnimatedButton from "@/components/AnimatedButton";
 
 export default function ContactPage() {
@@ -10,11 +16,13 @@ export default function ContactPage() {
     subject: "",
     message: "",
   });
+  const [attachment, setAttachment] = useState(null);
   const [status, setStatus] = useState({
     submitted: false,
     submitting: false,
     info: { error: false, msg: null },
   });
+  const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -23,23 +31,66 @@ export default function ContactPage() {
     });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.size > 5 * 1024 * 1024) {
+      // 5MB limit
+      setStatus({
+        ...status,
+        info: { error: true, msg: "File size exceeds 5MB limit" },
+      });
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+      setAttachment(null);
+    } else {
+      setStatus({
+        ...status,
+        info: { error: false, msg: null },
+      });
+      setAttachment(file);
+    }
+  };
+
+  const removeAttachment = () => {
+    setAttachment(null);
+    // Reset the file input if it exists
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus((prevStatus) => ({ ...prevStatus, submitting: true }));
 
     try {
+      // Create a FormData object to handle file uploads
+      const formDataToSend = new FormData();
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("subject", formData.subject);
+      formDataToSend.append("message", formData.message);
+
+      if (attachment) {
+        formDataToSend.append("attachment", attachment);
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        // No Content-Type header when using FormData
+        body: formDataToSend,
       });
 
       const data = await res.json();
 
       if (res.status === 200) {
         setFormData({ name: "", email: "", subject: "", message: "" });
+        setAttachment(null);
+        // Reset file input safely
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
         setStatus({
           submitted: true,
           submitting: false,
@@ -66,7 +117,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="max-w-4xl mx-auto mt-16 sm:mt-20 md:mt-32 px-4 sm:px-6 mb-20 sm:mb-24">
+    <main className="max-w-4xl mx-auto mt-20 sm:mt-24 md:mt-32 px-4 sm:px-6 mb-20 sm:mb-24">
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -103,7 +154,11 @@ export default function ContactPage() {
             </AnimatedButton>
           </motion.div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4 sm:space-y-6"
+            encType="multipart/form-data"
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <div className="space-y-1 sm:space-y-2">
                 <label
@@ -195,6 +250,57 @@ export default function ContactPage() {
                   placeholder="Your message here..."
                 ></textarea>
               </div>
+            </div>
+
+            <div className="space-y-1 sm:space-y-2">
+              <label
+                htmlFor="attachment"
+                className="block text-xs sm:text-sm font-medium"
+              >
+                Attachment (optional)
+              </label>
+              {!attachment ? (
+                <>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <FiPaperclip className="text-muted-foreground text-sm sm:text-base" />
+                    </div>
+                    <input
+                      type="file"
+                      id="attachment"
+                      ref={fileInputRef}
+                      name="attachment"
+                      onChange={handleFileChange}
+                      className="block w-full pl-9 sm:pl-10 pr-3 py-1.5 sm:py-2 text-sm border border-border rounded-md bg-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent file:mr-4 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary/90 cursor-pointer"
+                      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt"
+                    />
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Max file size: 5MB. Accepted formats: PDF, DOC, DOCX, JPG,
+                    PNG, TXT
+                  </p>
+                </>
+              ) : (
+                <div className="flex items-center gap-2 p-2 bg-primary/10 border border-primary/30 rounded-md">
+                  <div className="flex-1 flex items-center gap-2">
+                    <FiPaperclip className="text-primary text-sm sm:text-base" />
+                    <span className="text-sm font-medium truncate">
+                      {attachment.name}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      ({Math.round(attachment.size / 1024)} KB)
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={removeAttachment}
+                    className="p-1 rounded-full hover:bg-primary/20 transition-colors"
+                    aria-label="Remove attachment"
+                  >
+                    <FiX className="text-primary" />
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="text-right">

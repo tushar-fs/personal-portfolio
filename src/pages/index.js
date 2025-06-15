@@ -49,7 +49,7 @@ export default function HomePage() {
         </div>
 
         <h1
-          className={`text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent mb-4 sm:mb-6 ${
+          className={`text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent mb-4 sm:mb-6 leading-normal ${
             isDark
               ? "bg-gradient-to-r from-primary to-accent"
               : "bg-gradient-to-r from-primary-dark to-primary"
@@ -143,14 +143,14 @@ export default function HomePage() {
           <div className="w-full md:hidden">
             <div className="flex gap-3 sm:gap-4 w-full">
               <Link href="/experience" passHref className="flex-1">
-                <AnimatedButton className="w-full text-sm sm:text-base py-2 px-3 sm:px-4">
+                <AnimatedButton className="w-full text-sm sm:text-base py-2 px-3 sm:px-4 h-[40px] sm:h-[44px] flex items-center justify-center">
                   View Experience
                 </AnimatedButton>
               </Link>
               <Link href="/resume" passHref className="flex-1">
                 <AnimatedButton
                   color="secondary"
-                  className="w-full text-sm sm:text-base py-2 px-3 sm:px-4"
+                  className="w-full text-sm sm:text-base py-2 px-3 sm:px-4 h-[40px] sm:h-[44px] flex items-center justify-center"
                 >
                   View Resume
                 </AnimatedButton>
@@ -160,7 +160,7 @@ export default function HomePage() {
               <Link href="/contact" passHref className="w-full">
                 <AnimatedButton
                   color="primary"
-                  className="w-full text-sm sm:text-base py-2 px-4 sm:px-4"
+                  className="w-full text-sm sm:text-base py-2 px-4 sm:px-4 h-[40px] sm:h-[44px] flex items-center justify-center"
                 >
                   Contact Me
                 </AnimatedButton>
@@ -172,18 +172,24 @@ export default function HomePage() {
           <div className="hidden md:flex md:flex-col md:w-full md:gap-4">
             <div className="flex gap-4 w-full">
               <Link href="/experience" passHref className="flex-1">
-                <AnimatedButton className="w-full">
+                <AnimatedButton className="w-full h-[48px] flex items-center justify-center">
                   View Experience
                 </AnimatedButton>
               </Link>
               <Link href="/resume" passHref className="flex-1">
-                <AnimatedButton color="secondary" className="w-full">
+                <AnimatedButton
+                  color="secondary"
+                  className="w-full h-[48px] flex items-center justify-center"
+                >
                   View Resume
                 </AnimatedButton>
               </Link>
             </div>
             <Link href="/contact" passHref className="w-full">
-              <AnimatedButton color="primary" className="w-full">
+              <AnimatedButton
+                color="primary"
+                className="w-full h-[48px] flex items-center justify-center"
+              >
                 Contact Me
               </AnimatedButton>
             </Link>
