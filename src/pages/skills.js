@@ -1,4 +1,5 @@
 import resume from "@/data/resume.json";
+import Head from "next/head";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FiCpu,
@@ -276,36 +277,47 @@ export default function SkillsPage() {
   const skillsData = resume.skills;
 
   return (
-    <main className="max-w-4xl mx-auto mt-24 md:mt-32 px-6 mb-16">
-      <h1 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-        Technical Skills
-      </h1>
-      <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-        Technologies and tools I&apos;ve worked with - click on a skill to see
-        where it&apos;s been used
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Object.entries(skillsData).map(([category, items], idx) => (
-          <motion.div
-            key={category}
-            className="bg-muted p-6 rounded-lg border border-border"
-            custom={idx}
-            initial="hidden"
-            animate="visible"
-            variants={cardVariants}
-          >
-            <h2 className="text-xl text-foreground mb-4 flex items-center gap-3">
-              {categoryIconMap[category] || <FiCpu className="text-primary" />}
-              {category}
-            </h2>
-            <ul>
-              {items.map((item, i) => (
-                <SkillItem key={i} skill={item.name} />
-              ))}
-            </ul>
-          </motion.div>
-        ))}
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>Skills | Tushar Singh</title>
+        <meta
+          name="description"
+          content="Technical skills and expertise of Tushar Singh - Programming Languages, Frontend, Backend, AI Engineering, Databases, and Software Tools."
+        />
+      </Head>
+      <main className="max-w-4xl mx-auto mt-24 md:mt-32 px-6 mb-16">
+        <h1 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+          Technical Skills
+        </h1>
+        <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+          Technologies and tools I&apos;ve worked with - click on a skill to see
+          where it&apos;s been used
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Object.entries(skillsData).map(([category, items], idx) => (
+            <motion.div
+              key={category}
+              className="bg-muted p-6 rounded-lg border border-border"
+              custom={idx}
+              initial="hidden"
+              animate="visible"
+              variants={cardVariants}
+            >
+              <h2 className="text-xl text-foreground mb-4 flex items-center gap-3">
+                {categoryIconMap[category] || (
+                  <FiCpu className="text-primary" />
+                )}
+                {category}
+              </h2>
+              <ul>
+                {items.map((item, i) => (
+                  <SkillItem key={i} skill={item.name} />
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </main>
+    </>
   );
 }

@@ -14,8 +14,13 @@ export default function AnimatedButton({
 
   return (
     <motion.button
-      whileHover={{ scale: 1.05 }}
+      whileHover={{
+        scale: 1.05,
+        y: -2,
+        boxShadow: "0px 10px 20px rgba(0,0,0,0.1)",
+      }}
       whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
       className={`px-6 py-2 rounded-lg font-bold shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary ${colorClasses} ${className}`}
       {...props}
     >

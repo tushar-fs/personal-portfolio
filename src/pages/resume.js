@@ -28,7 +28,7 @@ export default function ResumePage() {
         />
       </Head>
 
-      <main className="max-w-5xl mx-auto mt-24 md:mt-32 px-6 mb-16">
+      <main className="w-[60%] mx-auto mt-24 md:mt-32 px-6 mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -82,7 +82,7 @@ export default function ResumePage() {
 
             <iframe
               src="/resume.pdf"
-              className="w-full h-[75vh] border-none"
+              className="w-full h-[115vh] border-none"
               onLoad={handleIframeLoad}
               onError={handleIframeError}
               title="Resume"

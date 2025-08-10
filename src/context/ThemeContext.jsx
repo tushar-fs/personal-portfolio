@@ -1,26 +1,26 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext({
-  theme: "dark",
+  theme: "light",
   setTheme: () => null,
   toggleTheme: () => null,
 });
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
 
-  // Initialize theme from localStorage or default to dark
+  // Initialize theme from localStorage or default to light
   useEffect(() => {
     // Run only on client-side
     if (typeof window !== "undefined") {
       const storedTheme = localStorage.getItem("theme");
-      // Use stored theme if available, otherwise default to dark
+      // Use stored theme if available, otherwise default to light
       if (storedTheme) {
         setTheme(storedTheme);
       } else {
-        // Default to dark mode, ignore system preference
-        setTheme("dark");
-        localStorage.setItem("theme", "dark");
+        // Default to light mode, ignore system preference
+        setTheme("light");
+        localStorage.setItem("theme", "light");
       }
     }
   }, []);
