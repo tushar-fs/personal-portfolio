@@ -65,8 +65,32 @@
   ],
   "projects": [
     {
+      "name": "Sustainable Browsing Tracker",
+      "githubUrl": "https://github.com/vatsalgandhi83/sustainable-browser-tracking",
+      "imageUrl": "https://opengraph.githubassets.com/1/vatsalgandhi83/sustainable-browser-tracking",
+      "role": "Contributor",
+      "description": [
+        "A browser extension to help you understand and reduce the environmental impact of your internet usage.",
+        "Get real-time feedback on websites, track your digital carbon footprint, and discover greener alternatives.",
+        "Earn points and badges for your eco-friendly habits.",
+        "Features an Eco-Dashboard, Green Hosting Detection, AI-Powered Suggestions, Gamification System, and a Low Power Mode."
+      ],
+      "technologies": [
+        "JavaScript (ES6 Modules)",
+        "HTML5",
+        "Tailwind CSS",
+        "Python 3",
+        "Flask",
+        "Google Generative AI (Gemini)",
+        "The Green Web Foundation API",
+        "Chrome Extension APIs"
+      ]
+    },
+    {
       "name": "Customer Support Analyzer [RAG based Application]",
       "githubUrl": "https://github.com/tushar-fs",
+      "imageUrl": "https://opengraph.githubassets.com/1/tushar-fs/customer-support-analyzer",
+      "role": "Creator",
       "description": [
         "Architected a full-stack semantic search engine, featuring a Python/FastAPI backend to power a Retrieval-Augmented Generation (RAG) pipeline to enable natural language queries on a knowledge base of customer support tickets.",
         "Combined Google's gemini-1.5-flash-latest LLM with a ChromaDB vector database and 'sentence-transformers' to deliver context-aware resolution from a knowledge base.",
@@ -87,6 +111,8 @@
     {
       "name": "BookTable [Restaurant Booking Application]",
       "githubUrl": "https://github.com/tushar-fs",
+      "imageUrl": "https://opengraph.githubassets.com/1/tushar-fs/booktable",
+      "role": "Creator",
       "description": [
         "Led key frontend development: Established the UI project, dockerized frontend, built core user interfaces (Login, Homepage, Profile), and engineered dynamic restaurant search and discovery by integrating Google Maps API.",
         "Developed backend REST APIs in Spring Boot for user registration, booking, and restaurant search functionalities. Leveraged Spring JPA and JDBC to connect and perform CRUD operations on a MySQL database for data persistence."
@@ -106,6 +132,8 @@
     {
       "name": "Log Classifier [Java CLI Application]",
       "githubUrl": "https://github.com/tushar-fs/logClassifier",
+      "imageUrl": "https://opengraph.githubassets.com/1/tushar-fs/logClassifier",
+      "role": "Creator",
       "description": [
         "Developed a robust Java application to parse, classify, and aggregate raw log files into structured JSON reports for performance, application, and request analysis.",
         "Implemented the Chain of Responsibility and Strategy design patterns to create a modular and extensible log processing pipeline.",

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaLaptopCode } from "react-icons/fa";
 import { FiCheckCircle } from "react-icons/fi";
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -56,6 +58,12 @@ const highlightTechTerms = (text) => {
     "knowledge base",
     "LLM",
     "Pipeline",
+    "Flask",
+    "Chrome Extension",
+    "JavaScript",
+    "HTML5",
+    "ES6 Modules",
+    "The Green Web Foundation API",
   ];
 
   // Sort by length (longest first) to avoid partial replacements
@@ -96,7 +104,7 @@ export default function ProjectsPage() {
           content="Academic and personal projects by Tushar Singh showcasing expertise in Full Stack Development, AI Engineering, and modern web technologies."
         />
       </Head>
-      <main className="max-w-4xl mx-auto mt-24 md:mt-32 px-6">
+      <main className="max-w-6xl mx-auto mt-24 md:mt-32 px-6">
         <h1 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
           Academic & Personal Projects
         </h1>
@@ -105,38 +113,46 @@ export default function ProjectsPage() {
           solutions
         </p>
 
-        <div className="relative">
-          <div
-            className="absolute left-3 md:left-4 top-0 bottom-0 w-px bg-border"
-            aria-hidden="true"
-          />
-          <ul className="space-y-10 ml-8 md:ml-12">
-            {resume.projects.map((project, idx) => (
-              <motion.li
-                key={idx}
-                className="bg-muted p-6 md:p-8 rounded-lg border border-border flex flex-col h-full relative overflow-hidden group shadow-sm"
-                custom={idx}
-                initial="hidden"
-                animate="visible"
-                variants={cardVariants}
-                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-              >
-                {/* Timeline node */}
-                <div
-                  className="absolute -left-9 md:-left-12 top-8 w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20"
-                  aria-hidden="true"
-                />
-
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="p-2 rounded-full bg-primary/10 text-primary">
-                    <FaLaptopCode />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {resume.projects.map((project, idx) => (
+            <motion.div
+              key={idx}
+              className="bg-muted rounded-xl border border-border overflow-hidden flex flex-col h-full shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              onClick={() =>
+                window.open(project.githubUrl, "_blank", "noopener,noreferrer")
+              }
+            >
+              {/* GitHub Repository Preview Image */}
+              {project.imageUrl && (
+                <div className="relative w-full h-48 overflow-hidden">
+                  <Image
+                    src={project.imageUrl}
+                    alt={`${project.name} preview`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <h2 className="text-xl md:text-2xl font-bold text-white mb-1">
+                      {project.name}
+                    </h2>
+                    {project.role && (
+                      <span className="inline-block bg-primary/80 text-white text-xs px-3 py-1 rounded-full">
+                        {project.role}
+                      </span>
+                    )}
                   </div>
-                  <h2 className="text-2xl text-foreground font-bold">
-                    {project.name}
-                  </h2>
                 </div>
+              )}
 
-                <ul className="space-y-3 mt-2 mb-4 flex-grow">
+              <div className="p-6 flex flex-col flex-grow">
+                {/* Project description */}
+                <ul className="space-y-3 mb-6 flex-grow">
                   {project.description.map((desc, i) => (
                     <motion.li
                       key={i}
@@ -153,50 +169,61 @@ export default function ProjectsPage() {
                   ))}
                 </ul>
 
-                <div className="mt-auto">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, i) => (
-                      <motion.span
-                        key={i}
-                        className="bg-background px-3 py-1 text-sm rounded-full border border-border text-muted-foreground hover:bg-background/80 transition-colors duration-200"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center gap-4 pt-3 border-t border-border text-muted-foreground">
-                    {project.githubUrl && (
-                      <motion.a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 hover:text-primary transition-colors"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <FaGithub /> GitHub
-                      </motion.a>
-                    )}
-                    {project.liveUrl && (
-                      <motion.a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 hover:text-primary transition-colors"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <FaExternalLinkAlt /> Live Demo
-                      </motion.a>
-                    )}
-                  </div>
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.technologies.slice(0, 6).map((tech, i) => (
+                    <motion.span
+                      key={i}
+                      className="bg-background px-3 py-1 text-xs rounded-full border border-border text-muted-foreground hover:bg-background/80 transition-colors duration-200"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                  {project.technologies.length > 6 && (
+                    <motion.span
+                      className="bg-primary/10 px-3 py-1 text-xs rounded-full text-primary hover:bg-primary/20 transition-colors duration-200"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      +{project.technologies.length - 6} more
+                    </motion.span>
+                  )}
                 </div>
-              </motion.li>
-            ))}
-          </ul>
+
+                {/* Links */}
+                <div className="flex items-center gap-4 pt-3 border-t border-border text-muted-foreground">
+                  {project.githubUrl && (
+                    <motion.a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 hover:text-primary transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <FaGithub /> GitHub
+                    </motion.a>
+                  )}
+                  {project.liveUrl && (
+                    <motion.a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 hover:text-primary transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <FaExternalLinkAlt /> Live Demo
+                    </motion.a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </main>
     </>

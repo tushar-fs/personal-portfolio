@@ -1,7 +1,7 @@
 import resume from "@/data/resume.json";
 import Head from "next/head";
 import { motion } from "framer-motion";
-import { MdWork } from "react-icons/md";
+import { MdWork, MdLocationOn, MdDateRange } from "react-icons/md";
 import { FiCheckCircle } from "react-icons/fi";
 import React from "react";
 
@@ -130,6 +130,11 @@ const buildExperienceToSkillsMap = () => {
 
 const experienceToSkills = buildExperienceToSkillsMap();
 
+// Company logo mapping - add more as needed
+const companyLogos = {
+  "Tekion Corp": "/tekion_logo.png", // Add this image to your public folder
+};
+
 export default function ExperiencePage() {
   return (
     <>
@@ -140,7 +145,7 @@ export default function ExperiencePage() {
           content="Professional experience of Tushar Singh - Software Engineer with expertise in Full Stack Development, React, Java, Spring Boot, and enterprise systems."
         />
       </Head>
-      <main className="max-w-4xl mx-auto mt-24 md:mt-32 px-6">
+      <main className="max-w-6xl mx-auto mt-24 md:mt-32 px-6">
         <h1 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
           Professional Experience
         </h1>
@@ -148,87 +153,91 @@ export default function ExperiencePage() {
           A concise, verifiable summary of roles, impact, and technologies
         </p>
 
-        <div className="relative">
-          <div
-            className="absolute left-3 md:left-4 top-0 bottom-0 w-px bg-border"
-            aria-hidden
-          />
-          <ul className="space-y-10 ml-8 md:ml-12">
-            {resume.experience.map((exp, idx) => (
-              <motion.li
+        <div className="grid grid-cols-1 gap-8">
+          {resume.experience.map((exp, idx) => {
+            const expKey = `${exp.role} @ ${exp.company}`;
+            const skills = experienceToSkills[expKey] || [];
+
+            return (
+              <motion.div
                 key={idx}
-                className="relative bg-muted p-6 md:p-8 rounded-lg border border-border shadow-sm overflow-hidden"
-                custom={idx}
-                initial="hidden"
-                animate="visible"
-                variants={cardVariants}
-                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                className="bg-muted rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
               >
-                {/* Timeline node */}
-                <div
-                  className="absolute -left-9 md:-left-12 top-8 w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20"
-                  aria-hidden
-                />
-
-                <div className="flex items-start gap-4">
-                  <div className="p-2 rounded-full bg-primary/10 text-primary mt-1">
-                    <MdWork size={24} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center flex-wrap gap-2 mb-1">
-                      <h2 className="text-2xl text-foreground font-bold">
-                        {exp.role}
-                      </h2>
-                      <span className="text-primary font-bold">@</span>
-                      <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-dark to-primary">
-                        {exp.company}
-                      </span>
+                {/* Header with gradient background */}
+                <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-6 md:p-8 border-b border-border">
+                  <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+                    {/* Company logo placeholder - replace with actual logos */}
+                    <div className="flex-shrink-0 w-16 h-16 bg-background rounded-full flex items-center justify-center border border-border">
+                      <MdWork size={32} className="text-primary" />
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-2 mb-4">
-                      <span className="bg-background px-3 py-1 text-sm rounded-full border border-border text-muted-foreground">
-                        {exp.duration}
-                      </span>
-                      <span className="text-muted-foreground/70">•</span>
-                      <span className="bg-background px-3 py-1 text-sm rounded-full border border-border text-muted-foreground">
-                        {exp.location}
-                      </span>
-                    </div>
-
-                    {/* Tech Stack chips (derived from resume.skills) */}
-                    {(() => {
-                      const expKey = `${exp.role} @ ${exp.company}`;
-                      const skills = experienceToSkills[expKey] || [];
-                      if (skills.length === 0) return null;
-                      return (
-                        <div className="mb-4">
-                          <div className="text-sm font-semibold text-foreground mb-2">
-                            Tech Stack
-                          </div>
-                          <div className="flex flex-wrap gap-2">
-                            {skills.slice(0, 10).map((skill, i) => (
-                              <span
-                                key={`${expKey}-skill-${i}`}
-                                className="bg-background px-3 py-1 text-xs rounded-full border border-border text-muted-foreground"
-                              >
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
+                    <div className="flex-1">
+                      {/* Role and company */}
+                      <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
+                        <h2 className="text-2xl text-foreground font-bold">
+                          {exp.role}
+                        </h2>
+                        <div className="hidden md:block text-primary font-bold">
+                          @
                         </div>
-                      );
-                    })()}
+                        <div className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                          {exp.company}
+                        </div>
+                      </div>
 
-                    <div className="border-t border-border/70 my-4" />
-                    <div className="text-sm uppercase tracking-wide text-muted-foreground/80 mb-2">
-                      Key Achievements
+                      {/* Duration and location */}
+                      <div className="flex flex-wrap items-center gap-4 mt-2 text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                          <MdDateRange className="text-primary" />
+                          <span>{exp.duration}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <MdLocationOn className="text-primary" />
+                          <span>{exp.location}</span>
+                        </div>
+                      </div>
                     </div>
+                  </div>
+                </div>
 
-                    <ul className="space-y-3 mt-2">
+                <div className="p-6 md:p-8">
+                  {/* Tech Stack chips */}
+                  {skills.length > 0 && (
+                    <div className="mb-6">
+                      <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
+                        <span className="w-1.5 h-6 bg-primary rounded-full"></span>
+                        Tech Stack
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {skills.map((skill, i) => (
+                          <motion.span
+                            key={`${expKey}-skill-${i}`}
+                            className="bg-background px-3 py-1.5 text-sm rounded-full border border-border text-muted-foreground hover:border-primary/30 hover:bg-primary/5 transition-colors"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            {skill}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Key Achievements */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                      <span className="w-1.5 h-6 bg-primary rounded-full"></span>
+                      Key Achievements
+                    </h3>
+                    <ul className="space-y-4">
                       {exp.points.map((point, i) => (
                         <motion.li
                           key={i}
-                          className="flex items-start gap-3 group"
+                          className="flex items-start gap-3 group bg-background/50 p-3 rounded-lg border border-border/50 hover:border-primary/30 hover:bg-background transition-all"
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.2 + i * 0.1 }}
@@ -242,9 +251,9 @@ export default function ExperiencePage() {
                     </ul>
                   </div>
                 </div>
-              </motion.li>
-            ))}
-          </ul>
+              </motion.div>
+            );
+          })}
         </div>
       </main>
     </>
