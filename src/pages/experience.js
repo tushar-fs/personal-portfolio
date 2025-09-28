@@ -20,31 +20,74 @@ const cardVariants = {
 const highlightTechTerms = (text) => {
   // List of technical terms to highlight - expand as needed
   const techTerms = [
+    // Frontend frameworks & libraries
     "NextJS",
+    "Next.js",
     "React",
     "Material UI",
     "TypeScript",
+    "JavaScript",
+    "Webpack",
+    "Module Federation",
+    "Redux",
+    "List virtualization",
+
+    // Rendering techniques
     "Client-Side Rendering",
     "CSR",
     "Static Site Generation",
     "SSG",
+    "hybrid rendering model",
+    "hybrid rendering",
+
+    // Performance & optimization
     "SEO",
     "code-splitting",
     "lazy loading",
+    "Largest Contentful Paint",
+    "LCP",
+    "FPS",
+    "main-thread blocking",
+    "Google Lighthouse score",
+
+    // Storage & state
     "local storage",
     "session storage",
-    "JavaScript",
-    "hybrid rendering",
-    "UI",
-    "frontend",
+
+    // Real-time technologies
+    "Server-Sent Events",
+    "short-polling",
+
+    // Backend & APIs
     "Spring Boot",
     "API",
     "REST",
     "Java",
+    "MySQL",
+    "Elasticsearch",
+
+    // Frontend concepts
+    "UI",
+    "frontend",
+    "microfrontend",
+    "microfrontend architecture",
+
+    // CSS & styling
     "CSS",
     "Tailwind",
-    "Redux",
+
+    // Database operations
     "CRUD",
+
+    // Dev tools & processes
+    "Jenkins CI/CD pipeline",
+    "Git pre-commit hooks",
+    "JSON-driven",
+    "forms engine",
+    "test suite",
+    "test coverage",
+    "Accounts Receivable",
+    "AR",
   ];
 
   // Sort by length (longest first) to avoid partial replacements
@@ -194,6 +237,13 @@ export default function ExperiencePage() {
                         <div className="flex items-center gap-1">
                           <MdDateRange className="text-primary" />
                           <span>{exp.duration}</span>
+                          {exp.company === "Tekion Corp" && (
+                            <span className="ml-1 bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full">
+                              {exp.role === "Software Engineer"
+                                ? "2 years 6 months"
+                                : "6 months"}
+                            </span>
+                          )}
                         </div>
                         <div className="flex items-center gap-1">
                           <MdLocationOn className="text-primary" />

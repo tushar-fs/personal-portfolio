@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import {
-  FaGithub,
-  FaLinkedin,
   FaHome,
   FaBriefcase,
   FaLaptopCode,
@@ -18,15 +16,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 import { useTheme } from "@/context/ThemeContext";
+import { FaTrophy } from "react-icons/fa";
 import resume from "@/data/resume.json";
 
 const NAV_ITEMS = [
   { href: "/", label: "Home", icon: <FaHome /> },
-  { href: "/skills", label: "Skills", icon: <FaTools /> },
-  { href: "/experience", label: "Experience", icon: <FaBriefcase /> },
   { href: "/projects", label: "Projects", icon: <FaLaptopCode /> },
+  { href: "/activities", label: "Achievements", icon: <FaTrophy /> },
+  { href: "/experience", label: "Experience", icon: <FaBriefcase /> },
+  { href: "/skills", label: "Skills", icon: <FaTools /> },
   { href: "/education", label: "Education", icon: <FaGraduationCap /> },
   { href: "/resume", label: "Resume", icon: <FaFileAlt /> },
+  { href: "/contact", label: "Contact", icon: <FaEnvelope /> },
 ];
 
 const navVariants = {
@@ -57,7 +58,7 @@ export default function Navbar() {
       initial="hidden"
       animate="visible"
       variants={navVariants}
-      className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-4xl z-50"
+      className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50"
     >
       <div className="bg-muted/50 backdrop-blur-sm border border-border rounded-xl shadow-lg px-4 py-2 flex items-center justify-between">
         <Link href="/" passHref legacyBehavior>
@@ -128,43 +129,6 @@ export default function Navbar() {
 
         <div className="flex gap-4 items-center text-xl text-muted-foreground">
           <ThemeToggle />
-          {/* Social icons for desktop */}
-          <div className="hidden md:flex gap-4">
-            <motion.a
-              href={resume.home.socials.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{
-                scale: 1.1,
-                color: isDark ? "#818cf8" : "#6366f1",
-                transition: {
-                  scale: { duration: 0.3, ease: "easeOut" },
-                  color: { duration: 0.3, ease: "easeOut" },
-                },
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="transition-all duration-300"
-            >
-              <FaGithub />
-            </motion.a>
-            <motion.a
-              href={resume.home.socials.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{
-                scale: 1.1,
-                color: isDark ? "#818cf8" : "#6366f1",
-                transition: {
-                  scale: { duration: 0.3, ease: "easeOut" },
-                  color: { duration: 0.3, ease: "easeOut" },
-                },
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="transition-all duration-300"
-            >
-              <FaLinkedin />
-            </motion.a>
-          </div>
 
           {/* Mobile menu button */}
           <motion.button
@@ -210,28 +174,6 @@ export default function Navbar() {
                   </li>
                 );
               })}
-              <li className="mt-4 pt-4 border-t border-border flex gap-4 justify-center">
-                <motion.a
-                  href={resume.home.socials.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xl text-muted-foreground hover:text-primary"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaGithub />
-                </motion.a>
-                <motion.a
-                  href={resume.home.socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xl text-muted-foreground hover:text-primary"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaLinkedin />
-                </motion.a>
-              </li>
             </ul>
           </motion.div>
         )}

@@ -42,24 +42,24 @@
     {
       "role": "Software Engineer",
       "company": "Tekion Corp",
-      "duration": "July 2022 - Dec 2024",
+      "duration": "Jul 2022 - Dec 2024",
       "location": "Bengaluru, India",
       "points": [
-        "Designed and implemented 10+ interactive user interfaces using NextJS, React & Material UI primarily leveraging Client-Side Rendering (CSR) to create a dynamic, app-like user experience that led to a 20% increase in user engagement.",
-        "Integrated a configurable front-end UI into the Account Receivables module using TypeScript & React.",
-        "Developed a feature leveraging local and session storage API's to persist user vehicle builds and customizations, ensuring seamless state preservation and retrieval across browser sessions.",
-        "Engineered a responsive compare vehicles page by adopting a hybrid rendering strategy. Utilized Static Site Generation(SSG) for initial page loads, while applying Client Side Rendering(CSR) for interactive search and filtering.",
-        "Refactored for code-splitting and lazy loading (~30% bundle size), introduced SEO-friendly URLs."
+        "Built and optimized real-time transaction status from short-polling to Server-Sent Events, reducing latency from over 3s to less than 500ms and increasing Tekion pay adoption by over 45%.",
+        "Re-architected the Accounts Receivable (AR) invoices page search engine, replacing inefficient multi-field MySQL queries with a dedicated Elasticsearch index impacting 900+ onboarded dealerships.",
+        "Accelerated the rendering of AR invoices page by implementing List virtualization for a React Table rendering 10,000+ records, eliminated main-thread blocking to ensure fluid, 60 FPS scrolling and filtering.",
+        "Scaled a microfrontend architecture by integrating Webpack Module Federation across 8 interdependent sub-modules under Accounting module, facilitating secure, dynamic code deployments."
       ]
     },
     {
-      "role": "Engineering Intern",
+      "role": "Software Engineer Intern",
       "company": "Tekion Corp",
       "duration": "Jan 2022 - Jun 2022",
       "location": "Bengaluru, India",
       "points": [
-        "Collaborated with frontend team on a project aimed at streamlining dealer onboarding processes, resulting in a significant reduction in company's costs associated with dealer onboarding.",
-        "Authored comprehensive Unit tests with Jest and React Testing Library (RTL) to ensure code quality."
+        "Improved the developer experience by engineering a JSON-driven forms engine that automated custom form generation, reducing new dealer configuration time for engineering teams by 55%.",
+        "Automated code quality checks by configuring Git pre-commit hooks and integrating a comprehensive test suite into the Account Receivable Module Jenkins CI/CD pipeline, increasing project-wide test coverage from 20% to over 85% and preventing bug regressions.",
+        "Revamped vehicle comparison page by leveraging Next.js hybrid rendering model (Static Site Generation + Client Side Rendering), resulting in a 60% Largest Contentful Paint(LCP) reduction and a transition from 'Poor' to 'Good' Google Lighthouse score."
       ]
     }
   ],
@@ -142,6 +142,93 @@
       "technologies": ["Core Java", "Gradle", "Google Gson", "JUnit"]
     }
   ],
+  "activities": {
+    "hackathons": [
+      {
+        "name": "SJ Hacks",
+        "platform": "Devpost",
+        "location": "San Jose, CA",
+        "date": "Apr 27, 2025",
+        "project": "SJ Hopes",
+        "description": [
+          "Delivered a full-stack application by engineering robust backend workflows and responsive frontend to manage the complete client and task lifecycle.",
+          "Improved data integrity and streamlined manager workflows.",
+          "Implemented a unified system for real-time shelter visibility, reservations, and analytics for administrators."
+        ],
+        "achievement": "2nd Prize Winner",
+        "technologies": [
+          "java",
+          "spring boot",
+          "javascript",
+          "nextjs",
+          "typescript",
+          "mysql",
+          "google-places"
+        ],
+        "link": "https://devpost.com/software/sj-hopes"
+      },
+      {
+        "name": "SCE Hacks 1.0",
+        "platform": "Devpost",
+        "location": "San Jose State University, SCE Room",
+        "date": "Sep 5, 2025",
+        "project": "Sustainable Browser Tracker",
+        "description": [
+          "Developed a Chrome extension that analyzes website carbon footprints and tracks user CO2 emissions to promote sustainable browsing habits.",
+          "Engineered a Python FastAPI backend to leverage the Google Gemini API.",
+          "Delivered AI-powered recommendations for eco-friendly alternative websites directly to users."
+        ],
+        "achievement": "Top 10 Finalist",
+        "technologies": [
+          "css3",
+          "esbuild",
+          "flask",
+          "fastapi",
+          "googlegeminiai",
+          "html5",
+          "javascript",
+          "node.js",
+          "npm",
+          "pip",
+          "python",
+          "tailwind"
+        ],
+        "link": "https://devpost.com/software/sustainable-browser-tracker"
+      }
+    ],
+    "codingChallenges": {
+      "leetcode": {
+        "username": "elite__coder",
+        "problemsSolved": 420,
+        "languages": ["C++", "Java", "JavaScript"],
+        "link": "https://leetcode.com/elite__coder/",
+        "badges": ["100 Days Badge 2025", "50 Days Badge 2025"]
+      }
+    },
+    "articles": [
+      {
+        "title": "Detect a negative cycle in a Graph using Shortest Path Faster Algorithm",
+        "platform": "GeeksforGeeks",
+        "description": "Step-by-step guide to implementing Detect a negative cycle in a Graph using Shortest Path Faster Algorithm",
+        "author": "elitecoder",
+        "link": "https://www.geeksforgeeks.org/dsa/detect-a-negative-cycle-in-a-graph-using-shortest-path-faster-algorithm/"
+      },
+      {
+        "title": "Count pairs from a given array whose sum lies from a given range",
+        "platform": "GeeksforGeeks",
+        "description": "A comprehensive guide to count pairs from a given array whose sum lies from a given range",
+        "author": "elitecoder",
+        "link": "https://www.geeksforgeeks.org/dsa/count-pairs-from-a-given-array-whose-sum-lies-from-a-given-range/"
+      },
+      {
+        "title": "Sum of Bitwise XOR of elements of an array with all elements of another array",
+        "platform": "GeeksforGeeks",
+        "description": "Step-by-step guide to implementing Sum of Bitwise XOR of elements of an array with all elements of another array",
+        "author": "elitecoder",
+        "link": "https://www.geeksforgeeks.org/dsa/sum-of-bitwise-xor-of-elements-of-an-array-with-all-elements-of-another-array/"
+      }
+    ]
+  },
   "skills": {
     "Programming Languages": [
       {
@@ -265,7 +352,7 @@
         "name": "Spring Boot",
         "usedIn": {
           "projects": ["BookTable [Restaurant Booking Application]"],
-          "experience": []
+          "experience": ["Software Engineer @ Tekion Corp"]
         }
       },
       {
@@ -363,7 +450,14 @@
         "name": "MySQL",
         "usedIn": {
           "projects": ["BookTable [Restaurant Booking Application]"],
-          "experience": []
+          "experience": ["Software Engineer @ Tekion Corp"]
+        }
+      },
+      {
+        "name": "Elasticsearch",
+        "usedIn": {
+          "projects": [],
+          "experience": ["Software Engineer @ Tekion Corp"]
         }
       },
       {
