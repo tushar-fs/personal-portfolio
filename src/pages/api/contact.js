@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import formidable from "formidable";
+import { IncomingForm } from "formidable";
 import fs from "fs";
 
 // Disable default body parser for file uploads
@@ -17,8 +17,9 @@ export default async function handler(req, res) {
 
   try {
     // Parse form with formidable
-    const form = new formidable.IncomingForm();
-    form.maxFileSize = 5 * 1024 * 1024; // 5MB limit
+    const form = new IncomingForm({
+      maxFileSize: 5 * 1024 * 1024, // 5MB limit
+    });
 
     const [fields, files] = await new Promise((resolve, reject) => {
       form.parse(req, (err, fields, files) => {
@@ -27,8 +28,13 @@ export default async function handler(req, res) {
       });
     });
 
-    const { name, email, subject, message } = fields;
-    const attachment = files.attachment;
+    // Extract form values, ensuring they are strings
+    const name = String(fields.name || "");
+    const email = String(fields.email || "");
+    const subject = String(fields.subject || "");
+    const message = String(fields.message || "");
+    // Check if attachment exists and has required properties
+    const attachment = files && files.attachment ? files.attachment : null;
 
     // Basic validation
     if (!name || !email || !subject || !message) {
@@ -64,17 +70,17 @@ export default async function handler(req, res) {
           <p><strong>Subject:</strong> ${subject}</p>
           <div style="margin-top: 20px; padding: 15px; background-color: #f5f5f5; border-radius: 5px;">
             <p><strong>Message:</strong></p>
-            <p>${message.replace(/\n/g, "<br>")}</p>
+            <p>${message.split("\n").join("<br>")}</p>
           </div>
         </div>
       `,
     };
 
     // If file was uploaded, attach it to email
-    if (attachment) {
+    if (attachment && attachment.filepath) {
       mailOptions.attachments = [
         {
-          filename: attachment.originalFilename,
+          filename: attachment.originalFilename || "attachment",
           content: fs.createReadStream(attachment.filepath),
         },
       ];
@@ -86,8 +92,10 @@ export default async function handler(req, res) {
     return res.status(200).json({ message: "Message sent successfully!" });
   } catch (error) {
     console.error("Error sending email:", error);
-    return res
-      .status(500)
-      .json({ message: "Failed to send message. Please try again later." });
+    // Return more detailed error for debugging
+    return res.status(500).json({
+      message: "Failed to send message. Please try again later.",
+      error: error.message || "Unknown error",
+    });
   }
 }
